@@ -5,12 +5,11 @@ import {Script, console} from "forge-std/Script.sol";
 import {Oracle} from "../src/Oracle.sol";
 
 contract OracleScript is Script {
-    Oracle oracle;
 
     function run() public returns (Oracle){
+        
         vm.startBroadcast();
         Oracle oracle = new Oracle();
-
         vm.stopBroadcast();
         return oracle;
 
