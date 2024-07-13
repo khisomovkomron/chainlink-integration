@@ -1,17 +1,18 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
-
+import {AggregatorV3Interface} from "lib/chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 
 contract Oracle {
+    AggregatorV3Interface internal priceFeed;
 
-    function getLatestPrice(address dataFeedAddress) public returns (int256 latestPrice){
-    DataFeedsScript automationScript = new DataFeedsScript(dataFeedAddress);
+    constructor(address _priceFeed) {
+        priceFeed = AggregatorV3Interface(_priceFeed);
+    }
 
-    vm.broadcast();
-    (,latestPrice,,,) = DataFeedsScript.getLatestRoundData();
-    return latestPrice;
-  }
-}
+    function getLatestPrice() public view returns (int256) {
+        (, int256 price,,,) = priceFeed.latestRoundData();
+
+        return price;
+    }
 }
