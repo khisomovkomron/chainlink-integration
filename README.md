@@ -64,3 +64,8 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+
+### INSTALL
+
+forge install https://github.com/smartcontractkit/chainlink.git --no-commit
