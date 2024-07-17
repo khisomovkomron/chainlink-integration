@@ -5,13 +5,11 @@ import {Script} from "forge-std/Script.sol";
 import {DexContract} from "../src/DexContract.sol";
 
 contract DexContractScript is Script {
-
-    function run() public returns (DexContract){
-        
+    function run() public returns (DexContract) {
         vm.startBroadcast();
-        DexContract dex = new DexContract(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        address priceFed = vm.envAddress("ETHUSD_PRICE_FEED_ADDRESS");
+        DexContract dex = new DexContract(priceFed);
         vm.stopBroadcast();
         return dex;
-
     }
 }
