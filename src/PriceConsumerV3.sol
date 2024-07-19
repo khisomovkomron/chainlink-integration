@@ -15,8 +15,9 @@ contract PriceConsumerV3 {
 
     function getLatestPrice() public returns (int256) {
         (, int256 price,,,) = priceFeed.latestRoundData();
+        
+        emit EventLogLatestPrice(price);
 
         return price;
-        emit EventLogLatestPrice(price);
     }
 }

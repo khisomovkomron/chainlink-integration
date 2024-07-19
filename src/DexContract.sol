@@ -16,8 +16,8 @@ contract DexContract {
         require(ethUsdPrice > 0, "Invalid price");
 
         uint256 usdAmount = _ethAmount * uint256(ethUsdPrice) / 10 ** 18;
-        return usdAmount;
         emit EventSwappedEthToUsdAmount(usdAmount);
+        return usdAmount;
     }
     
 }
